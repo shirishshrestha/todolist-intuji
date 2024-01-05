@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #e8e5e0;
+}
+
+.main__container {
+  max-width: calc(1174px + 30px);
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content {
+  background-color: #f5f5f5;
+  width: 25rem;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  position: relative;
+}
+
+.content-date {
+  border-bottom: 2px solid rgba(226, 224, 224, 0.5);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-date h4 {
+  color: #7c73b2;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.content-date h5 {
+  color: #8e8e90;
+  font-weight: 500;
+  font-size: 0.94rem;
+}
+
+.right-details {
+  color: #8e8e90;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.quote {
+  text-transform: uppercase;
+  color: #7368ae;
+  text-align: center;
+}
+
+.todo-content {
+  padding: 2rem 1.5rem;
+}
+
+.todo-list {
+  padding: 1.8rem 0 0 0;
+  color: #6e6e6f;
+}
+
+.main-todo {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.8rem;
+  word-wrap: break-word;
+}
+
+.main-todo p {
+  text-transform: capitalize;
+}
+
+.changes-button {
+  display: flex;
+  gap: 1rem;
+}
+
+.change-button {
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.45rem;
+}
+
+.edit-input input {
+  outline: none;
+  border: 2px solid rgba(106, 105, 105, 0.2);
+  border-radius: 3px;
+  background-color: transparent;
+  padding: 10px;
+  width: 130%;
+  color: #646465;
+}
+
+.change-button {
+  display: flex;
+  align-items: center;
+}
+
+.change-button button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.change-cross {
+  font-size: 1rem;
+  color: #646465;
+  display: flex;
+  align-items: center;
+}
+
+#delete-button {
+  font-size: 1.5rem;
+}
+
+.changes-button button {
+  outline: none;
+  color: #6e6e6f;
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.edit-button:hover {
+  color: #48c289;
+}
+
+#delete-button:hover {
+  color: #a92424;
+}
+
+.form {
+  position: absolute;
+  left: 40px;
+  bottom: 3.5rem;
+  padding: 1rem;
+  background: #e8e5e0;
+  backdrop-filter: blur(25px);
+  border-radius: 8px;
+  width: 20rem;
+}
+
+.form-heading {
+  color: #646465;
+  font-size: 1.1rem;
+  padding-bottom: 1rem;
+}
+
+.main-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.main-input input {
+  width: 100%;
+  color: #474748;
+  background-color: transparent;
+  outline: none;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.form-btn {
+  width: fit-content;
+  padding-top: 1rem;
+  outline: none;
+  color: #53e2a0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+}
+
+.form-btn:first-child {
+  padding-top: 0;
+}
+
+.add-btn {
+  padding: 1rem;
+  outline: none;
+  border: none;
+  background-color: #53e2a0;
+  border-radius: 100%;
+  color: white;
+  font-size: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  left: 165px;
+  bottom: -2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.toast {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  background-color: #53e2a0;
+  color: white;
+  padding: 15px;
+  border-radius: px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  gap: 1rem;
+}
+
+.toast-cross {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.delete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  text-transform: none !important;
+}
+
+.delete #delete-yes,
+#delete-no {
+  font-size: 1rem !important;
+  padding-right: 1rem;
+  padding-top: 0.4rem;
+}
+
+#delete-yes {
+  color: #53e2a0;
+}
+
+#delete-no {
+  color: #a92424;
+}
