@@ -50,8 +50,6 @@ const Todo = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [deleteColor, setDeleteColor] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [isError, setIsError] = useState(false);
 
   //get data from server
   const getTodos = async () => {
@@ -84,11 +82,7 @@ const Todo = () => {
       todo: newTodo,
       completed: false,
     };
-    if (inputValue.length > 50) {
-      setIsError(true);
-    } else {
-      setIsError(false);
-    }
+
     try {
       await fetch("http://localhost:3000/todos", {
         method: "POST",
@@ -164,12 +158,6 @@ const Todo = () => {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setNewTodo(event.target.value);
-    setInputValue(value);
-    if (value.length > 50) {
-      setIsError(true);
-    } else {
-      setIsError(false);
-    }
   };
 
   const toggleInput = () => {
@@ -289,22 +277,8 @@ const Todo = () => {
               value={newTodo}
               onChange={handleInputChange}
               placeholder="Add a task here"
-              style={{
-                border: isError
-                  ? "2px solid red"
-                  : "2px solid rgba(106, 105, 105, 0.2)",
-              }}
             />
-            {isError && (
-              <p style={{ color: "red", marginTop: "5px" }}>
-                Enter a valid input (max 50 characters).
-              </p>
-            )}
-
-            <button
-              className="form-btn"
-              onClick={!isError ? null : handleNewChange}
-            >
+            <button className="form-btn" onClick={handleNewChange}>
               Save
             </button>
           </form>
