@@ -53,18 +53,14 @@ const Todo = () => {
 
   //get data from server
   const getTodos = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/todos", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const getResponse = await response.json();
-      setTodoList(getResponse);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    const response = await fetch("http://localhost:3000/todos", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const getResponse = await response.json();
+    setTodoList(getResponse);
   };
   useEffect(() => {
     getTodos();
@@ -83,19 +79,16 @@ const Todo = () => {
       completed: false,
     };
 
-    try {
-      await fetch("http://localhost:3000/todos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todoData),
-      })
-        .then((response) => response.json())
-        .then((data) => setTodoList([...todoList, data]));
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    await fetch("http://localhost:3000/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todoData),
+    })
+      .then((response) => response.json())
+      .then((data) => setTodoList([...todoList, data]));
+
     setNewTodo("");
     setInputDiv(false);
     setButtonColor("#53e2a0");
@@ -105,22 +98,18 @@ const Todo = () => {
 
   //delete data from the server
   const handleDelete = async (todo) => {
-    try {
-      await fetch(`http://localhost:3000/todos/${todo.id}`, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const newList = todoList.filter((elem) => elem.id !== todo.id);
-          setTodoList(newList);
-          setToastMessage("Todo deleted successfully!");
-          setShowToast(true);
-          setShowConfirmation(false);
-          setDeleteColor(true);
-        });
-    } catch (error) {
-      console.log(error.message);
-    }
+    await fetch(`http://localhost:3000/todos/${todo.id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const newList = todoList.filter((elem) => elem.id !== todo.id);
+        setTodoList(newList);
+        setToastMessage("Todo deleted successfully!");
+        setShowToast(true);
+        setShowConfirmation(false);
+        setDeleteColor(true);
+      });
   };
 
   //update data of the server
@@ -129,30 +118,27 @@ const Todo = () => {
     if (!editTodo || !editTodo.todo) {
       return;
     }
-    try {
-      await fetch(`http://localhost:3000/todos/${editTodo.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editTodo),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const newTodos = todoList.map((elem) => {
-            if (elem.id !== editTodo.id) {
-              return elem;
-            }
-            return editTodo;
-          });
-          setTodoList(newTodos);
-          setEditTodo(null);
-          setShowToast(true);
-          setToastMessage("Edited Todo successfully!");
+
+    await fetch(`http://localhost:3000/todos/${editTodo.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const newTodos = todoList.map((elem) => {
+          if (elem.id !== editTodo.id) {
+            return elem;
+          }
+          return editTodo;
         });
-    } catch (error) {
-      console.log(error);
-    }
+        setTodoList(newTodos);
+        setEditTodo(null);
+        setShowToast(true);
+        setToastMessage("Edited Todo successfully!");
+      });
   };
 
   const handleInputChange = (event) => {

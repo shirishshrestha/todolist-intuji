@@ -4,11 +4,6 @@
       "id": 1,
       "todo": "complete todo",
       "completed": false
-    },
-    {
-      "id": 2,
-      "todo": "sleep and get rest",
-      "completed": false
     }
   ]
 }
