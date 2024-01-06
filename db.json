@@ -4,6 +4,16 @@
       "id": 1,
       "todo": "complete todo",
       "completed": false
+    },
+    {
+      "id": 2,
+      "todo": "help people",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "todo": "fight with rikesh",
+      "completed": false
     }
   ]
 }
