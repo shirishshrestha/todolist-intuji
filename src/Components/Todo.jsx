@@ -88,7 +88,7 @@ const Todo = () => {
     };
 
     try {
-      await fetch(`${apiUrl}/todos`, {
+      await fetch(`${url}/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
