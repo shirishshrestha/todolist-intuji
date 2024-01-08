@@ -9,7 +9,7 @@ const month = today.toLocaleString("default", { month: "long" });
 const date = new Date().getDate();
 const day = today.toLocaleString("default", { weekday: "long" });
 
-const apiUrl = import.meta.env.REACT_APP_JSON_SERVER_URL;
+const url = import.meta.env.REACT_APP_JSON_SERVER_URL;
 
 function Toast({ message, onClose, duration, deleteColor }) {
   const [counter, setCounter] = useState(duration);
@@ -57,7 +57,7 @@ const Todo = () => {
   //get data from server
   const getTodos = async () => {
     try {
-      const response = await fetch(`${apiUrl}/todos`, {
+      const response = await fetch(`${url}/todos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +109,7 @@ const Todo = () => {
   //delete data from the server
   const handleDelete = async (todo) => {
     try {
-      await fetch(`${apiUrl}/todos/${todo.id}`, {
+      await fetch(`${url}/todos/${todo.id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -133,7 +133,7 @@ const Todo = () => {
       return;
     }
     try {
-      await fetch(`${apiUrl}/todos/${editTodo.id}`, {
+      await fetch(`${url}/todos/${editTodo.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
