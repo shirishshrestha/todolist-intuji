@@ -9,6 +9,8 @@ const month = today.toLocaleString("default", { month: "long" });
 const date = new Date().getDate();
 const day = today.toLocaleString("default", { weekday: "long" });
 
+const apiUrl = import.meta.env.REACT_APP_JSON_SERVER_URL;
+
 function Toast({ message, onClose, duration, deleteColor }) {
   const [counter, setCounter] = useState(duration);
 
@@ -50,11 +52,12 @@ const Todo = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [deleteColor, setDeleteColor] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   //get data from server
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:3000/todos", {
+      const response = await fetch(`${apiUrl}/todos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +87,7 @@ const Todo = () => {
     };
 
     try {
-      await fetch("http://localhost:3000/todos", {
+      await fetch(`${apiUrl}/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +109,7 @@ const Todo = () => {
   //delete data from the server
   const handleDelete = async (todo) => {
     try {
-      await fetch(`http://localhost:3000/todos/${todo.id}`, {
+      await fetch(`${apiUrl}/todos/${todo.id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -130,7 +133,7 @@ const Todo = () => {
       return;
     }
     try {
-      await fetch(`http://localhost:3000/todos/${editTodo.id}`, {
+      await fetch(`${apiUrl}/todos/${editTodo.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -156,8 +159,11 @@ const Todo = () => {
   };
 
   const handleInputChange = (event) => {
-    const value = event.target.value;
-    setNewTodo(event.target.value);
+    const inputText = event.target.value;
+    const words = inputText.split(" ");
+
+    setIsValid(words.length <= 7);
+    setNewTodo(inputText);
   };
 
   const toggleInput = () => {
@@ -276,9 +282,29 @@ const Todo = () => {
               type="text"
               value={newTodo}
               onChange={handleInputChange}
+              style={{
+                border: isValid
+                  ? "1.5px solid rgba(153, 150, 150, 0.5)"
+                  : "1px solid red",
+              }}
               placeholder="Add a task here"
             />
-            <button className="form-btn" onClick={handleNewChange}>
+            {!isValid && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "0.8rem",
+                }}
+              >
+                Invalid input. Maximum 7 words allowed.
+              </p>
+            )}
+            <button
+              type="submit"
+              className="form-btn"
+              onClick={handleNewChange}
+              disabled={!isValid}
+            >
               Save
             </button>
           </form>

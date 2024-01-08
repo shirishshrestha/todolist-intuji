@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": 1,
-      "todo": "complete todo",
+      "todo": "completed todo",
       "completed": false
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "id": 3,
-      "todo": "fight with rikesh",
+      "todo": "sadasd",
       "completed": false
     }
   ]
