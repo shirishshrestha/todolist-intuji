@@ -9,7 +9,8 @@ const month = today.toLocaleString("default", { month: "long" });
 const date = new Date().getDate();
 const day = today.toLocaleString("default", { weekday: "long" });
 
-const url = import.meta.env.REACT_APP_JSON_SERVER_URL;
+const url = import.meta.env.VITE_APP_JSON_SERVER_URL;
+console.log(url);
 
 function Toast({ message, onClose, duration, deleteColor }) {
   const [counter, setCounter] = useState(duration);
